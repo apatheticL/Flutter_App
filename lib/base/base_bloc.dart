@@ -1,5 +1,9 @@
 import 'dart:async';
 
+import 'package:demo_navigator/data/remote/category_service.dart';
+import 'package:demo_navigator/data/remote/user_service.dart';
+import 'package:demo_navigator/data/repository/category_repository.dart';
+import 'package:demo_navigator/data/repository/user_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:rxdart/rxdart.dart';
@@ -30,5 +34,10 @@ abstract class BaseBloc {
     _progressEventSubject.close();
     _loadingStreamController.close();
   }
-
+  preLoadStaticData() {
+    CategoryRepository _cateRepo = CategoryRepository(categoryService: CategoryService());
+    _cateRepo.getCategories(null);
+    UserRepository _userRepo = new UserRepository(userService: UserService());
+    _userRepo.getUserInfo(null);
+  }
 }

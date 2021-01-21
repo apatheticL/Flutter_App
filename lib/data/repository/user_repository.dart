@@ -1,6 +1,7 @@
 import 'package:demo_navigator/constants/shared_preference_constant.dart';
 import 'package:demo_navigator/data/remote/user_service.dart';
 import 'package:demo_navigator/share/enum/user_type_enum.dart';
+import 'package:demo_navigator/share/model/user.dart';
 import 'package:demo_navigator/share/model/user_data.dart';
 import 'package:demo_navigator/utils/reponse_error.dart';
 import 'package:demo_navigator/utils/spref_util.dart';
@@ -12,7 +13,9 @@ abstract class ILoginListener{
   onLoginFailed(RestError restError);
 }
 
-
+abstract class IUserListener {
+  onLoadUserInfo(User userData);
+}
 class UserRepository{
   UserService _userService;
   UserRepository({@required UserService userService}) : _userService = userService;
@@ -41,6 +44,38 @@ class UserRepository{
       });
     }).catchError((error) {
       listener.onLoginFailed(RestError(message: "thông tin đăng nhập không chính sác"));
+    });
+  }
+  void getUserInfo(IUserListener listener) async {
+    var userId = SprefUtil.getInt(SharedPreferenceConstant.KEY_USER_ID);
+    var futures = _userService.getUserInfo(userId);
+    futures.then((res) {
+      var data = User.fromJson(res.data);
+      print('status' + data.status.toString());
+      if (listener != null) listener.onLoadUserInfo(data);
+      SprefUtil.putObject(SharedPreferenceConstant.KEY_USER, res.data);
+    }).catchError((error) {
+      print(error.toString());
+    });
+  }
+  void checkLogin(ILoginListener listener) async {
+    var username = SprefUtil.getString(SharedPreferenceConstant.KEY_USERNAME);
+
+    var password = SprefUtil.getString(SharedPreferenceConstant.KEY_PASSWORD);
+    //    username = SPref.instance.get(SPrefCacheConstant.KEY_USERNAME).toString();
+    if (username == null || password == null) return;
+    print(username);
+    print(password);
+    var futureRes = _userService.signIn(username, password);
+    futureRes.then((res) async {
+      LoginResult userData = LoginResult.fromJson(res.data);
+      print("IsActive: ${userData.isActive}");
+      if (!userData.success) {
+        return;
+      }
+      SprefUtil.putString(SharedPreferenceConstant.KEY_TOKEN, userData.token);
+      SprefUtil.putObject(SharedPreferenceConstant.KEY_LOGIN_DATA, userData);
+      listener.onSignInSuccess(userData);
     });
   }
 }
