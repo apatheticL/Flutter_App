@@ -1,10 +1,8 @@
 import 'dart:async';
-import 'dart:js';
 
 import 'package:demo_navigator/base/base_bloc.dart';
 import 'package:demo_navigator/base/base_event.dart';
 import 'package:demo_navigator/constants/constants.dart';
-import 'package:demo_navigator/constants/image_constant.dart';
 import 'package:demo_navigator/constants/route_constant.dart';
 import 'package:demo_navigator/constants/shared_preference_constant.dart';
 import 'package:demo_navigator/data/repository/user_repository.dart';
@@ -13,9 +11,7 @@ import 'package:demo_navigator/events/login_events/enter_phone_event.dart';
 import 'package:demo_navigator/events/login_events/login_event.dart';
 import 'package:demo_navigator/events/login_events/login_failed_event.dart';
 import 'package:demo_navigator/events/login_events/login_success_event.dart';
-import 'package:demo_navigator/modules/dialog/custom_dialog.dart';
 import 'package:demo_navigator/share/model/user_data.dart';
-import 'package:demo_navigator/share/sharepreferent/spref.dart';
 import 'package:demo_navigator/share/validations.dart';
 import 'package:demo_navigator/utils/reponse_error.dart';
 import 'package:demo_navigator/utils/spref_util.dart';
@@ -24,7 +20,7 @@ import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
 class LoginBloc extends BaseBloc implements ILoginListener {
-  UserRepository repository;
+  UserRepository _repository;
   static LoginBloc _instance;
   BuildContext context;
 
@@ -32,9 +28,10 @@ class LoginBloc extends BaseBloc implements ILoginListener {
     if (_instance == null){
       _instance = LoginBloc._internal(repository: repository);
     }
+    return _instance;
   }
   LoginBloc._internal({@required UserRepository repository}){
-    repository = repository;
+    _repository = repository;
   }
   StreamController<String> _phoneSubject = BehaviorSubject<String>();
   Stream<String> get phoneStream => _phoneSubject.stream;
@@ -57,7 +54,11 @@ class LoginBloc extends BaseBloc implements ILoginListener {
     }
   }
   checkLogin(){
-    repository.checkLogin(this);
+    _repository.checkLogin(this);
+  }
+  @override
+  void setContext(BuildContext context) {
+    this.context = context;
   }
 
   @override
@@ -70,7 +71,7 @@ class LoginBloc extends BaseBloc implements ILoginListener {
       progressEvenSink.add(LoginFailedEvent(restError.message));
   }
   void signInAsGuest() {
-    repository.signIn(Constants.GUEST_USERNAME, Constants.GUEST_PASSWORD, this);
+    _repository.signIn(Constants.GUEST_USERNAME, Constants.GUEST_PASSWORD, this);
   }
   @override
   onSignInSuccess(LoginResult userData) {
@@ -95,7 +96,7 @@ class LoginBloc extends BaseBloc implements ILoginListener {
   }
 
   void _handleEventLogin(LoginEvent event) {
-    repository.signIn(event.phone, event.pass, this);
+    _repository.signIn(event.phone, event.pass, this);
   }
   @override
   dispose() {
