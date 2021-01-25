@@ -1,4 +1,4 @@
-import 'package:demo_navigator/constants/image_constant.dart';
+import 'package:bizbook_clone/constants/image_constant.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

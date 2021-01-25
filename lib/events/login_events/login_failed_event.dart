@@ -1,4 +1,4 @@
-import 'package:demo_navigator/base/base_event.dart';
+import 'package:bizbook_clone/base/base_event.dart';
 
 class LoginFailedEvent extends BaseEvent{
   String error;

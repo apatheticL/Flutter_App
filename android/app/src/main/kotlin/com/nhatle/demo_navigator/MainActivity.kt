@@ -1,4 +1,4 @@
-package com.nhatle.demo_navigator
+package com.nhatle.bizbook_clone
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

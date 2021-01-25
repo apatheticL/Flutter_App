@@ -1,19 +1,20 @@
-import 'package:demo_navigator/base/base_event.dart';
-import 'package:demo_navigator/config/app_color.dart';
-import 'package:demo_navigator/constants/image_constant.dart';
-import 'package:demo_navigator/constants/route_constant.dart';
-import 'package:demo_navigator/data/remote/user_service.dart';
-import 'package:demo_navigator/data/repository/user_repository.dart';
-import 'package:demo_navigator/events/login_events/enter_pass_event.dart';
-import 'package:demo_navigator/events/login_events/enter_phone_event.dart';
-import 'package:demo_navigator/events/login_events/login_event.dart';
-import 'package:demo_navigator/events/login_events/login_failed_event.dart';
-import 'package:demo_navigator/events/login_events/login_success_event.dart';
-import 'package:demo_navigator/modules/login/login_bloc.dart';
-import 'package:demo_navigator/share/widget/bloc_listener.dart';
-import 'package:demo_navigator/share/widget/normal_button.dart';
+import 'package:bizbook_clone/base/base_event.dart';
+import 'package:bizbook_clone/config/app_color.dart';
+import 'package:bizbook_clone/constants/image_constant.dart';
+import 'package:bizbook_clone/constants/route_constant.dart';
+import 'package:bizbook_clone/data/remote/user_service.dart';
+import 'package:bizbook_clone/data/repository/user_repository.dart';
+import 'package:bizbook_clone/events/login_events/enter_pass_event.dart';
+import 'package:bizbook_clone/events/login_events/enter_phone_event.dart';
+import 'package:bizbook_clone/events/login_events/login_event.dart';
+import 'package:bizbook_clone/events/login_events/login_failed_event.dart';
+import 'package:bizbook_clone/events/login_events/login_success_event.dart';
+import 'package:bizbook_clone/modules/login/login_bloc.dart';
+import 'package:bizbook_clone/share/widget/bloc_listener.dart';
+import 'package:bizbook_clone/share/widget/normal_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -81,10 +82,10 @@ class _LoginWithFormState extends State<LoginWithFormWidget> {
   @override
   Widget build(BuildContext context) {
     LoginBloc bloc = Provider.of<LoginBloc>(context);
-    return BlocListener(
+    return BlocListener<LoginBloc>(
       listener: _handleEventListener,
       child: Container(
-        color: Colors.red,
+        color: Colors.blueGrey,
         padding: EdgeInsets.all(24),
         child: Center(
           child: SingleChildScrollView(
@@ -93,17 +94,35 @@ class _LoginWithFormState extends State<LoginWithFormWidget> {
               children: <Widget>[
                 //drawable view for login
                 Center(
-                  child: Image.asset("res\images\logo_app.png", width: 100,
+                  child: Image.asset("res/images/welcomeLogo.png", width: 100,
                     height: 100,),
                 ),
                 SizedBox(
                   height: 20,
                 ),
-                _buildUsernameField(bloc),
+                Container(
+                  decoration: BoxDecoration(
+                    color:  Colors.black38,
+                    border: Border.all(color: Colors.white,width: 1),
+                    borderRadius: BorderRadius.circular(16.0)
+                  ),
+                  child: _buildUsernameField(bloc),
+                  padding: EdgeInsets.only(left: 8),
+                ),
+
                 SizedBox(
                   height: 20,
                 ),
-                _buildPassField(bloc),
+                Container(
+                  decoration: BoxDecoration(
+                      color:  Colors.black38,
+                      border: Border.all(color: Colors.white,width: 1),
+                      borderRadius: BorderRadius.circular(16.0)
+                  ),
+                  child: _buildPassField(bloc),
+                  padding: EdgeInsets.only(left: 8,right: 8),
+                ),
+                SizedBox(height: 24,),
                 Row(
                   children: <Widget>[
                     Expanded(
@@ -145,29 +164,7 @@ class _LoginWithFormState extends State<LoginWithFormWidget> {
                 SizedBox(
                   height: 20,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    GestureDetector(
-                      onTap: () {
-                        bloc.signInAsGuest();
-//                          Navigator.push(
-//                              context, MaterialPageRoute(builder: (context) => RegisterPage()));
-                      },
-                      child: Container(
-                        child: Text(
-                          'Đăng nhập sau',
-                          style: TextStyle(
-                            color: AppColor.white,
-                            fontWeight: FontWeight.w600,
-                          ),
-                          textAlign: TextAlign.right,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-                _buildFooter(context, bloc),
+
               ],
             ),
           ),
@@ -177,7 +174,8 @@ class _LoginWithFormState extends State<LoginWithFormWidget> {
   }
 
   Widget _buildUsernameField(LoginBloc bloc) {
-    return StreamBuilder(
+    return
+      StreamBuilder(
       stream: bloc.phoneStream,
       initialData: null,
       builder: (context, AsyncSnapshot<String> textStream) =>
@@ -186,30 +184,30 @@ class _LoginWithFormState extends State<LoginWithFormWidget> {
             onChanged: (text) {
               bloc.progressEvenSink.add(PhoneEvent(text));
             },
-            cursorColor: AppColor.white,
+            cursorColor: Colors.white30,
             keyboardType: TextInputType.emailAddress,
             style: TextStyle(
               fontSize: 14,
-              color: AppColor.white,
+              color: Colors.white,
               fontWeight: FontWeight.w600,
             ),
             decoration: InputDecoration(
                 filled: true,
-                fillColor: AppColor.white,
+                fillColor: Colors.transparent,
                 icon: Image.asset(
                   ImageConstant.ICON_EMAIL, width: 25, height: 25,),
                 hintText: 'Email',
-                hintStyle: TextStyle(color: AppColor.white,),
+                hintStyle: TextStyle(color: Colors.white,),
                 contentPadding: const EdgeInsets.only(
                     left: 14, bottom: 8, top: 8),
-                focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide(color: Colors.white)
-                ),
-                enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.redAccent),
-                    borderRadius: BorderRadius.circular(16)
-                )
+                // focusedBorder: OutlineInputBorder(
+                //     borderRadius: BorderRadius.circular(16),
+                //     borderSide: BorderSide(color: Colors.white)
+                // ),
+                // enabledBorder: UnderlineInputBorder(
+                //     borderSide: BorderSide(color: Colors.redAccent),
+                //     borderRadius: BorderRadius.circular(16)
+                // )
             ),
           ),
     );
@@ -244,7 +242,7 @@ class _LoginWithFormState extends State<LoginWithFormWidget> {
                 ),
                 Positioned(
                   right: 0,
-                  left: 20,
+                  top: 20,
                   child: Container(
                     height: 15,
                     child: Flex(
@@ -283,24 +281,9 @@ class _LoginWithFormState extends State<LoginWithFormWidget> {
           bloc.progressEvenSink
               .add(LoginEvent(_txtPhoneController.text, _txtPassController.text));
         },
-        backgroundColor: AppColor.white,
-        color: AppColor.blueMain);
+        backgroundColor: Colors.black54,
+        color:Colors.white);
   }
 
-  Widget _buildFooter(BuildContext context, LoginBloc bloc) {
-    return Container(
-      margin: EdgeInsets.only(top: 30),
-      padding: EdgeInsets.all(10),
-      child: FlatButton(
-        onPressed: () {
-          Navigator.pushReplacementNamed(context, RouteConstant.REGISTER);
-        },
-        shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(4.0)),
-        child: Text(
-          'Đăng ký tài khoản',
-          style: TextStyle(color: AppColor.blueMain, fontSize: 19),
-        ),
-      ),
-    );
-  }
+
 }

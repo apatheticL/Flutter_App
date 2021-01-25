@@ -1,6 +1,6 @@
 
 
-import 'package:demo_navigator/config/app_color.dart';
+import 'package:bizbook_clone/config/app_color.dart';
 import 'package:flutter/material.dart';
 
 class BtnStyle {

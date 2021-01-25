@@ -1,10 +1,10 @@
-import 'package:demo_navigator/constants/shared_preference_constant.dart';
-import 'package:demo_navigator/data/remote/user_service.dart';
-import 'package:demo_navigator/share/enum/user_type_enum.dart';
-import 'package:demo_navigator/share/model/user.dart';
-import 'package:demo_navigator/share/model/user_data.dart';
-import 'package:demo_navigator/utils/reponse_error.dart';
-import 'package:demo_navigator/utils/spref_util.dart';
+import 'package:bizbook_clone/constants/shared_preference_constant.dart';
+import 'package:bizbook_clone/data/remote/user_service.dart';
+import 'package:bizbook_clone/share/enum/user_type_enum.dart';
+import 'package:bizbook_clone/share/model/user.dart';
+import 'package:bizbook_clone/share/model/user_data.dart';
+import 'package:bizbook_clone/utils/reponse_error.dart';
+import 'package:bizbook_clone/utils/spref_util.dart';
 import 'package:flutter/cupertino.dart';
 
 abstract class ILoginListener{

@@ -1,16 +1,13 @@
 import 'dart:async';
 
-import 'package:demo_navigator/data/remote/category_service.dart';
-import 'package:demo_navigator/data/remote/user_service.dart';
-import 'package:demo_navigator/data/repository/category_repository.dart';
-import 'package:demo_navigator/data/repository/user_repository.dart';
+import 'package:bizbook_clone/data/remote/category_service.dart';
+import 'package:bizbook_clone/data/remote/user_service.dart';
+import 'package:bizbook_clone/data/repository/category_repository.dart';
+import 'package:bizbook_clone/data/repository/user_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:rxdart/rxdart.dart';
 
-import 'base_event.dart';
-import 'base_event.dart';
-import 'base_event.dart';
 import 'base_event.dart';
 
 abstract class BaseBloc {

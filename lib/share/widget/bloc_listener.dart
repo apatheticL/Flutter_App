@@ -1,5 +1,5 @@
-import 'package:demo_navigator/base/base_bloc.dart';
-import 'package:demo_navigator/base/base_event.dart';
+import 'package:bizbook_clone/base/base_bloc.dart';
+import 'package:bizbook_clone/base/base_event.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 

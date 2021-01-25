@@ -13,6 +13,6 @@ class ImageConstant{
   static const ICON_SHOPPING_CART_MAIN_SELECTED="res/icons/icon_shopping-cart_main_selected.png";
   static const ICON_SHOPPING_CART_MAIN = "res/icons/icon_shopping-cart_main.png";
   static const ICON_USER_SELECTED ="res/icons/icon_user-silhouette_selected.png";
-  static const ICON_USER_ ="res/icons/icon_user-silhouette.png";
+  static const ICON_USER_ ="res/icons/icon_user_silhouette.png";
 
 }

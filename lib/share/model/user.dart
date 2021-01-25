@@ -1,4 +1,4 @@
-import 'package:demo_navigator/share/model/vip_group.dart';
+import 'package:bizbook_clone/share/model/vip_group.dart';
 
 import 'District.dart';
 import 'city.dart';

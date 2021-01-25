@@ -1,5 +1,5 @@
-import 'package:demo_navigator/config/app_color.dart';
-import 'package:demo_navigator/utils/button_style.dart';
+import 'package:bizbook_clone/config/app_color.dart';
+import 'package:bizbook_clone/utils/button_style.dart';
 import 'package:flutter/material.dart';
 
 class NormalButton extends StatelessWidget {
@@ -27,7 +27,7 @@ class NormalButton extends StatelessWidget {
             borderRadius: new BorderRadius.circular(4.0)),
         child: Text(
           title,
-          style: BtnStyle.normalWhite(color ?? AppColor.blueMain),
+          style: BtnStyle.normalWhite(color ?? Colors.black87),
         ),
       ),
     );

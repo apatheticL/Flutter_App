@@ -1,7 +1,7 @@
 
 
-import 'package:demo_navigator/constants/shared_preference_constant.dart';
-import 'package:demo_navigator/utils/spref_util.dart';
+import 'package:bizbook_clone/constants/shared_preference_constant.dart';
+import 'package:bizbook_clone/utils/spref_util.dart';
 import 'package:intl/intl.dart';
 
 class CommonUtils {

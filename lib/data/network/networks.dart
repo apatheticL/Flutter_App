@@ -1,6 +1,6 @@
-import 'package:demo_navigator/constants/shared_preference_constant.dart';
-import 'package:demo_navigator/constants/api_constant.dart';
-import 'package:demo_navigator/share/sharepreferent/spref.dart';
+import 'package:bizbook_clone/constants/shared_preference_constant.dart';
+import 'package:bizbook_clone/constants/api_constant.dart';
+import 'package:bizbook_clone/share/sharepreferent/spref.dart';
 import 'package:dio/dio.dart';
 
 class BookClient {

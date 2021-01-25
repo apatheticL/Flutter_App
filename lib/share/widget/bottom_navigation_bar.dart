@@ -1,8 +1,8 @@
-import 'package:demo_navigator/config/app_color.dart';
-import 'package:demo_navigator/constants/dimen_constant.dart';
-import 'package:demo_navigator/constants/image_constant.dart';
-import 'package:demo_navigator/constants/route_constant.dart';
-import 'package:demo_navigator/constants/string_constants.dart';
+import 'package:bizbook_clone/config/app_color.dart';
+import 'package:bizbook_clone/constants/dimen_constant.dart';
+import 'package:bizbook_clone/constants/image_constant.dart';
+import 'package:bizbook_clone/constants/route_constant.dart';
+import 'package:bizbook_clone/constants/string_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -21,15 +21,20 @@ class BottomNavBar extends StatelessWidget{
         currentIndex: currentIndex,
         iconSize: DimenConstant.SIZE_ICON_BOTTOM_NAVIGATION,
         backgroundColor: Colors.white,
-        fixedColor: Colors.red,
         unselectedItemColor: AppColor.blueMain,
         onTap: (selectIndex) {
           switch(selectIndex){
             case 0:
               if(ModalRoute.of(context).settings.name == RouteConstant.HOME) return;
-              Navigator.pushNamedAndRemoveUntil(context, RouteConstant.HOME, (Route<dynamic> route) =>false);
+              Navigator.pushNamedAndRemoveUntil(context, RouteConstant.HOME, (Route<dynamic> route) => false);
               break;
+
             case 1:
+              if (ModalRoute.of(context).settings.name == RouteConstant.ORDER) return;
+              Navigator.pushNamedAndRemoveUntil(
+                  context, RouteConstant.ORDER, (Route<dynamic> route) => false);
+              break;
+            case 2:
               if (ModalRoute.of(context).settings.name == RouteConstant.PERSON) return;
               Navigator.pushNamedAndRemoveUntil(
                   context, RouteConstant.PERSON, (Route<dynamic> route) => false);

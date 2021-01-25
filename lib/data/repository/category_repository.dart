@@ -1,7 +1,7 @@
-import 'package:demo_navigator/constants/shared_preference_constant.dart';
-import 'package:demo_navigator/data/remote/category_service.dart';
-import 'package:demo_navigator/share/model/category.dart';
-import 'package:demo_navigator/utils/spref_util.dart';
+import 'package:bizbook_clone/constants/shared_preference_constant.dart';
+import 'package:bizbook_clone/data/remote/category_service.dart';
+import 'package:bizbook_clone/share/model/category.dart';
+import 'package:bizbook_clone/utils/spref_util.dart';
 import 'package:flutter/cupertino.dart';
 abstract class ICategoriesListener {
   onLoadCategory(List<Category> categories);

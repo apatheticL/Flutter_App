@@ -1,10 +1,10 @@
-import 'package:demo_navigator/base/base_bloc.dart';
-import 'package:demo_navigator/base/base_event.dart';
-import 'package:demo_navigator/data/interfaces/home_listener.dart';
-import 'package:demo_navigator/data/remote/book_service.dart';
-import 'package:demo_navigator/data/repository/home_repository.dart';
-import 'package:demo_navigator/share/model/book.dart';
-import 'package:demo_navigator/share/widget/bloc_listener.dart';
+import 'package:bizbook_clone/base/base_bloc.dart';
+import 'package:bizbook_clone/base/base_event.dart';
+import 'package:bizbook_clone/data/interfaces/home_listener.dart';
+import 'package:bizbook_clone/data/remote/book_service.dart';
+import 'package:bizbook_clone/data/repository/home_repository.dart';
+import 'package:bizbook_clone/share/model/book.dart';
+import 'package:bizbook_clone/share/widget/bloc_listener.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:rxdart/rxdart.dart';
 

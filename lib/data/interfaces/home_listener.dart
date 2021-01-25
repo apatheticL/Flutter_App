@@ -1,4 +1,4 @@
-import 'package:demo_navigator/share/model/book.dart';
+import 'package:bizbook_clone/share/model/book.dart';
 
 abstract class IHomeListener {
   onLoadNewBook(List<Book> books);

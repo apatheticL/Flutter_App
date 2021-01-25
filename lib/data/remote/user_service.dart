@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:demo_navigator/constants/api_constant.dart';
-import 'package:demo_navigator/data/network/networks.dart';
+import 'package:bizbook_clone/constants/api_constant.dart';
+import 'package:bizbook_clone/data/network/networks.dart';
 import 'package:dio/dio.dart';
 
 class UserService{
